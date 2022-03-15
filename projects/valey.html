@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VALEY46</title>
+  <link rel="stylesheet" href="../styles.css">
+  <meta name="description" content="hey, i'm thomas, welcome to my portfolio. i'm a french web developer / designer and if you like my job, let's get in touch !"/>
+  <meta name="author" content="Thomas LAMBOLEZ"/>
+  <meta name="keywords" content="developer, webdesign, html, css, javascript, portfolio"/>
+  <meta property="og:site_name" content="Thomas LAMBOLEZ Portfolio">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lambolezth.fr/">
+  <meta property="og:title" content="Thomas LAMBOLEZ Portfolio">
+  <meta itemprop="name" content="Thomas LAMBOLEZ Portfolio"/>
+  <meta itemprop="description" content="hey, i'm thomas, welcome to my portfolio. i'm a french web developer / designer and if you like my job, let's get in touch !"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/Logo.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/Logo.svg">
+</head>
+<body>
+<header>
+  <nav aria-label="Breadcrumb" class="breadcrumb">
+    <ul>
+      <li><a class=""
+             href="../index.html#top">welcome</a></li>
+      <li><a class="active"
+             href="../index.html#projects">projects</a></li>
+      <li><a class=""
+             href="../index.html#about_me">me</a></li>
+      <li><a class=""
+             href="../index.html#contact">contact</a></li>
+    </ul>
+  </nav>
+  <img src="../images/Logo.svg" alt="Logo Thomas LAMBOLEZ" width="60px">
+</header>
+<article class="page_project" id="valey">
+  <h2>VALEY46</h2>
+  <div>
+    <div class="left">
+      <div class="wrap">
+        <button class="next_button">next.</button>
+        <button class="prev_button">prev.</button>
+        <div class="carousel_project">
+          <div class="carousel_container">
+            <div class="carousel_item">
+              <img src="../images/mockup_bosss3_1.png" alt="" class="carousel_img">
+            </div>
+            <div class="carousel_item">
+              <img src="../images/mockup_bosss3_2.png" alt="" class="carousel_img">
+            </div>
+            <div class="carousel_item">
+              <img src="../images/mockup_bosss3_3.png" alt="" class="carousel_img">
+            </div>
+            <div class="carousel_item">
+              <img src="../images/mockup_bosss3_4.png" alt="" class="carousel_img">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <h4>school project</h4>
+      <h5>design - development</h5>
+      <p>on this project we had to create a website in 48 hours about a celibrity that we chose.<br>
+      i used the javascript framework vue to create a single page application.<br>
+      i also used some ajax request to call and display a list.</p>
+      <a href="https://bosss3.lambolezth.fr"><button>view website</button></a>
+    </div>
+  </div>
+</article>
+<footer>
+  <ul>
+    <li><a href="https://www.instagram.com/lmblz/"><img src="../images/instagram.png" alt="Instagram"></a><p> - instagram</p></li>
+    <li><a href="https://www.linkedin.com/in/thomas-lambolez-3625a51a2/"><img src="../images/linkedin.png" alt="LinkedIn"></a><p> - linkedin</p></li>
+  </ul>
+  <p>© 2022 - thomas lambolez - all rights reserved</p>
+</footer>
+</body>
+<script>
+  (function() {
+    "use strict";
+
+    function Carousel(setting) {
+      let privates = {};
+
+      this.prev_slide = () => {
+        --privates.opt.position;
+
+        if(privates.opt.position < 0) {
+          privates.sel.wrap.classList.add('s-notransition');
+          privates.opt.position = privates.opt.max_position - 1;
+        }
+        privates.sel.wrap.style["transform"] = `translateX(-${privates.opt.position}00%)`;
+      };
+
+      this.next_slide = () => {
+        ++privates.opt.position;
+
+        if(privates.opt.position >= privates.opt.max_position) {
+          privates.opt.position = 0;
+        }
+
+        privates.sel.wrap.style["transform"] = `translateX(-${privates.opt.position}00%)`;
+      };
+
+      privates.setting = setting;
+
+      privates.sel = {
+        "main": document.querySelector(privates.setting.main),
+        "wrap": document.querySelector(privates.setting.wrap),
+        "children": document.querySelector(privates.setting.wrap).children,
+        "prev": document.querySelector(privates.setting.prev),
+        "next": document.querySelector(privates.setting.next)
+      };
+
+      privates.opt = {
+        "position": 0,
+        "max_position": document.querySelector(privates.setting.wrap).children.length
+      };
+
+      if(privates.sel.prev !== null) {
+        privates.sel.prev.addEventListener('click', () => {
+          this.prev_slide();
+        });
+      }
+
+      if(privates.sel.next !== null) {
+        privates.sel.next.addEventListener('click', () => {
+          this.next_slide();
+        });
+      }
+    }
+
+    let a = new Carousel({
+      "main": ".carousel_project",
+      "wrap": ".carousel_container",
+      "prev": ".prev_button",
+      "next": ".next_button"
+    });
+  })();
+</script>
+</html>
